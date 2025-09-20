@@ -15,14 +15,197 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       min-height: 100vh;
-      padding: 20px;
+      padding: 0;
       color: #333;
+      padding-top: 80px;
+      padding-bottom: 100px;
     }
 
     .container {
       max-width: 1000px;
       margin: 0 auto;
       perspective: 1000px;
+      padding: 0 20px;
+    }
+
+    /* HEADER STYLES */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #667eea;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.05);
+      color: #764ba2;
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .logo:hover .logo-icon {
+      transform: rotateY(180deg);
+      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .nav-link {
+      color: #333;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 8px 16px;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-link::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      transition: left 0.3s ease;
+      z-index: -1;
+    }
+
+    .nav-link:hover::before {
+      left: 0;
+    }
+
+    .nav-link:hover {
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    /* FOOTER STYLES */
+    .footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-top: 1px solid rgba(255,255,255,0.3);
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+      z-index: 1000;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 25px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .footer-link {
+      color: #333;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 6px 12px;
+      border-radius: 20px;
+      transition: all 0.3s ease;
+      position: relative;
+      font-size: 0.9rem;
+    }
+
+    .footer-link:hover {
+      color: #667eea;
+      transform: translateY(-1px);
+    }
+
+    .social-contact {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+
+    .snapchat-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(45deg, #FFFC00, #FFC400);
+      color: #333;
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 25px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 3px 10px rgba(255, 196, 0, 0.3);
+    }
+
+    .snapchat-btn:hover {
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 6px 20px rgba(255, 196, 0, 0.5);
+    }
+
+    .snapchat-icon {
+      width: 20px;
+      height: 20px;
+      background: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
     }
 
     h1 {
@@ -316,7 +499,7 @@
       width: 100%;
       height: 100%;
       background: rgba(0,0,0,0.8);
-      z-index: 1000;
+      z-index: 2000;
       backdrop-filter: blur(10px);
     }
 
@@ -393,10 +576,59 @@
         margin: 10px 0;
         text-align: center;
       }
+      
+      .nav-menu {
+        gap: 15px;
+      }
+      
+      .nav-link {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+      }
+      
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+      }
+      
+      .footer-links {
+        justify-content: center;
+        gap: 15px;
+      }
+      
+      .header-content {
+        padding: 10px 15px;
+      }
+      
+      .logo {
+        font-size: 1.2rem;
+      }
+      
+      .logo-icon {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
 <body>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-content">
+      <a href="#" class="logo">
+        <div class="logo-icon">📁</div>
+        <span>FileManager</span>
+      </a>
+      <nav class="nav-menu">
+        <a href="#" class="nav-link" data-modal="about">À propos</a>
+        <a href="#" class="nav-link" data-modal="features">Fonctionnalités</a>
+        <a href="#" class="nav-link" data-modal="help">Aide</a>
+      </nav>
+    </div>
+  </header>
+
   <div class="container">
     <h1>📂 Gestionnaire de fichiers moderne</h1>
 
@@ -429,6 +661,24 @@
     </div>
   </div>
 
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="#" class="footer-link" data-modal="terms">Conditions d'utilisation</a>
+        <a href="#" class="footer-link" data-modal="privacy">Confidentialité</a>
+        <a href="#" class="footer-link" data-modal="contact">Contact</a>
+        <span style="color: #666; font-size: 0.9rem;">© 2025 FileManager Pro</span>
+      </div>
+      <div class="social-contact">
+        <a href="https://snapchat.com/t/yfRhChk4" target="_blank" class="snapchat-btn">
+          <div class="snapchat-icon">👻</div>
+          <span>Snapchat</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
   <!-- Modal de prévisualisation -->
   <div id="previewModal" class="modal">
     <div class="modal-content">
@@ -437,6 +687,165 @@
         <button class="close-btn" id="closeModalBtn">&times;</button>
       </div>
       <div id="previewContent" class="preview-content">
+      </div>
+    </div>
+  </div>
+
+  <!-- Modals pour les pages -->
+  <div id="aboutModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>📚 À propos de FileManager</h3>
+        <button class="close-btn" data-close-modal>&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="margin-bottom: 20px; line-height: 1.6;">FileManager est une application moderne de gestion de fichiers en ligne, conçue pour offrir une expérience utilisateur exceptionnelle.</p>
+        <div style="background: #f8f9ff; padding: 20px; border-radius: 10px; margin: 20px 0;">
+          <h4 style="color: #667eea; margin-bottom: 10px;">✨ Caractéristiques principales :</h4>
+          <ul style="margin-left: 20px; line-height: 1.8;">
+            <li>Interface moderne avec design 3D</li>
+            <li>Glisser-déposer intuitif</li>
+            <li>Prévisualisation des fichiers</li>
+            <li>Stockage sécurisé avec Firebase</li>
+            <li>Design responsive</li>
+          </ul>
+        </div>
+        <p style="color: #666; font-style: italic;">Version 1.0 - Développé avec passion ❤️</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="featuresModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>🚀 Fonctionnalités</h3>
+        <button class="close-btn" data-close-modal>&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="display: grid; gap: 20px;">
+          <div style="background: white; padding: 20px; border-radius: 15px; border-left: 4px solid #4CAF50;">
+            <h4 style="color: #4CAF50; margin-bottom: 10px;">📁 Upload avancé</h4>
+            <p>Glissez-déposez vos fichiers ou utilisez le sélecteur. Support multi-fichiers.</p>
+          </div>
+          <div style="background: white; padding: 20px; border-radius: 15px; border-left: 4px solid #2196F3;">
+            <h4 style="color: #2196F3; margin-bottom: 10px;">👁️ Prévisualisation</h4>
+            <p>Visualisez directement vos images, PDFs et obtenez des infos sur vos fichiers.</p>
+          </div>
+          <div style="background: white; padding: 20px; border-radius: 15px; border-left: 4px solid #FF9800;">
+            <h4 style="color: #FF9800; margin-bottom: 10px;">📱 Responsive</h4>
+            <p>Interface adaptée à tous les appareils : mobile, tablette, desktop.</p>
+          </div>
+          <div style="background: white; padding: 20px; border-radius: 15px; border-left: 4px solid #9C27B0;">
+            <h4 style="color: #9C27B0; margin-bottom: 10px;">🔒 Sécurité</h4>
+            <p>Vos fichiers sont stockés de manière sécurisée avec Firebase.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="helpModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>❓ Aide & Support</h3>
+        <button class="close-btn" data-close-modal>&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="background: #f0f8ff; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+          <h4 style="color: #2196F3; margin-bottom: 15px;">📝 Comment utiliser FileManager ?</h4>
+          <ol style="margin-left: 20px; line-height: 1.8;">
+            <li><strong>Upload :</strong> Glissez vos fichiers dans la zone ou cliquez "Choisir des fichiers"</li>
+            <li><strong>Visualiser :</strong> Cliquez sur "👁️ Afficher" pour prévisualiser</li>
+            <li><strong>Télécharger :</strong> Utilisez le bouton "⬇️ Télécharger"</li>
+            <li><strong>Supprimer :</strong> Cliquez sur "🗑️ Supprimer" (avec confirmation)</li>
+          </ol>
+        </div>
+        <div style="background: #fff3e0; padding: 20px; border-radius: 10px;">
+          <h4 style="color: #FF9800; margin-bottom: 10px;">📞 Besoin d'aide ?</h4>
+          <p>Contactez-nous via Snapchat pour un support rapide et personnalisé !</p>
+          <a href="https://snapchat.com/t/yfRhChk4" target="_blank" style="display: inline-block; margin-top: 10px; padding: 8px 16px; background: #FFFC00; color: #333; text-decoration: none; border-radius: 20px; font-weight: 600;">
+            👻 Ouvrir Snapchat
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="termsModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>📜 Conditions d'utilisation</h3>
+        <button class="close-btn" data-close-modal>&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="line-height: 1.6;">
+          <h4 style="color: #667eea; margin-bottom: 15px;">1. Acceptation des conditions</h4>
+          <p style="margin-bottom: 20px;">En utilisant FileManager, vous acceptez ces conditions d'utilisation.</p>
+          
+          <h4 style="color: #667eea; margin-bottom: 15px;">2. Utilisation du service</h4>
+          <p style="margin-bottom: 20px;">Vous vous engagez à utiliser le service de manière responsable et conforme aux lois en vigueur.</p>
+          
+          <h4 style="color: #667eea; margin-bottom: 15px;">3. Vos fichiers</h4>
+          <p style="margin-bottom: 20px;">Vous êtes responsable du contenu que vous uploadez. Assurez-vous d'avoir les droits nécessaires.</p>
+          
+          <h4 style="color: #667eea; margin-bottom: 15px;">4. Limitation de responsabilité</h4>
+          <p style="margin-bottom: 20px;">Le service est fourni "en l'état". Nous ne garantissons pas la disponibilité continue du service.</p>
+          
+          <p style="color: #666; font-style: italic; margin-top: 30px;">Dernière mise à jour : Septembre 2025</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="privacyModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>🔒 Politique de confidentialité</h3>
+        <button class="close-btn" data-close-modal>&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="line-height: 1.6;">
+          <h4 style="color: #4CAF50; margin-bottom: 15px;">Protection de vos données</h4>
+          <p style="margin-bottom: 20px;">Nous respectons votre vie privée et nous nous engageons à protéger vos données personnelles.</p>
+          
+          <h4 style="color: #4CAF50; margin-bottom: 15px;">Collecte d'informations</h4>
+          <p style="margin-bottom: 20px;">Nous collectons uniquement les fichiers que vous uploadez volontairement pour les stocker et les gérer.</p>
+          
+          <h4 style="color: #4CAF50; margin-bottom: 15px;">Utilisation des données</h4>
+          <p style="margin-bottom: 20px;">Vos fichiers sont utilisés uniquement pour le fonctionnement du service de gestion de fichiers.</p>
+          
+          <h4 style="color: #4CAF50; margin-bottom: 15px;">Sécurité</h4>
+          <p style="margin-bottom: 20px;">Nous utilisons Firebase pour un stockage sécurisé et chiffré de vos fichiers.</p>
+          
+          <h4 style="color: #4CAF50; margin-bottom: 15px;">Vos droits</h4>
+          <p style="margin-bottom: 20px;">Vous pouvez supprimer vos fichiers à tout moment directement depuis l'interface.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="contactModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>📞 Contact</h3>
+        <button class="close-btn" data-close-modal>&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="text-align: center;">
+          <div style="background: linear-gradient(45deg, #FFFC00, #FFC400); padding: 30px; border-radius: 20px; margin-bottom: 20px;">
+            <div style="font-size: 4rem; margin-bottom: 20px;">👻</div>
+            <h3 style="color: #333; margin-bottom: 15px;">Contactez-nous sur Snapchat !</h3>
+            <p style="color: #333; margin-bottom: 20px;">Pour toute question, suggestion ou support, nous sommes disponibles sur Snapchat.</p>
+            <a href="https://snapchat.com/t/yfRhChk4" target="_blank" style="display: inline-block; padding: 12px 24px; background: white; color: #333; text-decoration: none; border-radius: 25px; font-weight: 600; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: all 0.3s ease;">
+              🚀 Ouvrir Snapchat
+            </a>
+          </div>
+          
+          <div style="background: #f8f9ff; padding: 20px; border-radius: 15px;">
+            <h4 style="color: #667eea; margin-bottom: 10px;">⚖️ Pourquoi Snapchat ?</h4>
+            <p style="color: #666; line-height: 1.6;">Snapchat nous permet de vous offrir un support rapide, interactif et personnalisé. Vous pouvez nous envoyer des captures d'écran, poser vos questions et recevoir une aide immédiate !</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -684,11 +1093,22 @@
       modal.style.display = 'none';
     }
 
-    // Fermer la modal en cliquant à côté
+    // Fonction pour ouvrir les modals de pages
+    function openPageModal(modalName) {
+      const modalId = modalName + 'Modal';
+      const modal = document.getElementById(modalId);
+      if (modal) {
+        modal.style.display = 'block';
+        setTimeout(() => {
+          modal.style.opacity = '1';
+        }, 10);
+      }
+    }
+    
+    // Fermer les modals en cliquant à côté
     window.onclick = function(event) {
-      const modal = document.getElementById('previewModal');
-      if (event.target === modal) {
-        closeModal();
+      if (event.target.classList.contains('modal')) {
+        event.target.style.display = 'none';
       }
     }
 
@@ -757,6 +1177,14 @@
       }, 3000);
     }
 
+    // Amélioration de la fonction closeModal pour gérer toutes les modals
+    function closeModal() {
+      const modals = document.querySelectorAll('.modal');
+      modals.forEach(modal => {
+        modal.style.display = 'none';
+      });
+    }
+    
     // CSS pour animations des notifications
     const style = document.createElement('style');
     style.textContent = `
@@ -771,15 +1199,23 @@
     `;
     document.head.appendChild(style);
 
-    // Gestionnaire d'événements pour tous les boutons
+    // Gestionnaire d'événements pour tous les boutons et modals
     document.addEventListener('click', function(e) {
       if (e.target.id === 'uploadBtn') {
         uploadFile();
         return;
       }
       
-      if (e.target.id === 'closeModalBtn') {
+      if (e.target.id === 'closeModalBtn' || e.target.hasAttribute('data-close-modal')) {
         closeModal();
+        return;
+      }
+      
+      // Gestion des liens de navigation et footer avec modals
+      if (e.target.hasAttribute('data-modal')) {
+        e.preventDefault();
+        const modalName = e.target.getAttribute('data-modal');
+        openPageModal(modalName);
         return;
       }
       
