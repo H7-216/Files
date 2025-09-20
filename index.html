@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Gestionnaire de fichiers en ligne</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+      background: #f4f4f4;
+    }
+    h1 { text-align: center; }
+    .upload-box {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+    .file-list {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .file-item {
+      margin: 5px 0;
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    button {
+      padding: 5px 10px;
+      border: none;
+      background: #007bff;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover { background: #0056b3; }
+  </style>
+</head>
+<body>
+  <h1>📂 Mes fichiers (Firebase)</h1>
+
+  <div class="upload-box">
+    <input type="file" id="fileInput">
+    <button onclick="uploadFile()">Uploader</button>
+  </div>
+
+  <div class="file-list">
+    <h2>Fichiers enregistrés :</h2>
+    <div id="fileList"></div>
+  </div>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+
+  <script>
+    // 1. Configuration Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyC_JIXVAtXBcg9czv5dRrVHuGq11jKzdv4",
+      authDomain: "chatonline-6d33b.firebaseapp.com",
+      databaseURL: "https://chatonline-6d33b-default-rtdb.europe-west1.firebasedatabase.app/",
+      projectId: "chatonline-6d33b",
+      storageBucket: "chatonline-6d33b.firebasestorage.app",
+      messagingSenderId: "115123207870",
+      appId: "1:115123207870:web:31830a862cbd824e8d68ef"
+    };
+
+    // 2. Initialisation Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
+    // 3. Upload fichier
+    function uploadFile() {
+      const fileInput = document.getElementById("fileInput");
+      const file = fileInput.files[0];
+      if (!file) return alert("Choisis un fichier !");
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const base64File = e.target.result;
+        const fileData = {
+          name: file.name,
+          type: file.type,
+          data: base64File
+        };
+        // Sauvegarde dans la DB
+        db.ref("files").push(fileData);
+        alert("✅ Fichier uploadé !");
+        fileInput.value = "";
+      };
+      reader.readAsDataURL(file);
+    }
+
+    // 4. Afficher les fichiers en temps réel
+    db.ref("files").on("value", snapshot => {
+      const fileList = document.getElementById("fileList");
+      fileList.innerHTML = "";
+      snapshot.forEach(child => {
+        const file = child.val();
+        const div = document.createElement("div");
+        div.className = "file-item";
+
+        const name = document.createElement("span");
+        name.textContent = file.name;
+
+        const downloadBtn = document.createElement("button");
+        downloadBtn.textContent = "Télécharger";
+        downloadBtn.onclick = () => {
+          const link = document.createElement("a");
+          link.href = file.data;
+          link.download = file.name;
+          link.click();
+        };
+
+        div.appendChild(name);
+        div.appendChild(downloadBtn);
+        fileList.appendChild(div);
+      });
+    });
+  </script>
+</body>
+</html>
